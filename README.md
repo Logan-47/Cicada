@@ -12,4 +12,4 @@ And many more.....
 ``` To install the requires modules : pip3 install -r requirements.txt```
 
 # usage guide
-``` Python3 cicada.py "what you want to search".
+``` Python3 cicada.py "what you want to search".```
