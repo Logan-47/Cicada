@@ -7,12 +7,9 @@ from PIL import Image
 from io import StringIO
 from io import BytesIO
 from selenium.webdriver.chrome.options import Options
-# from fake_useragent import UserAgent
 # from selenium.webdriver.firefox.options import Options
 
-# ua = UserAgent()
-# a = ua.random
-# user_agent = ua.random
+
 headers = {
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
 #------------------------------------------------------------------------------------
@@ -36,7 +33,7 @@ chrome_options.add_argument('--disable-crash-reporter')
 chrome_options.add_argument('--ignore-certificate-errors')
 chrome_options.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36')
 browser2 = webdriver.Chrome(chrome_options=chrome_options)
-# browser2.maximize_window()
+
 
 #------------------------------------------------------------------------------------
 
