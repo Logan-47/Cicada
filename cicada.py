@@ -15,43 +15,7 @@ import core.webshoot as webshoot
 import core.stackoverflow as stackoverflow
 import core.quora as quora
 
-#------------------------------------------------------------------------------------
-# Selenium web driver for firefox
-
-# firefox_options = Options()
-# firefox_options.add_argument("--headless")
-# browser  = webdriver.Firefox(firefox_options=firefox_options)
-# browser.maximize_window()
-
-#------------------------------------------------------------------------------------
-
-# selenium web driver for chrome
-
-# chrome_options = Options()
-# chrome_options.add_argument('--headless')
-# # chrome_options.headless = True
-# chrome_options.add_argument('--disable-gpu')
-# browser = webdriver.Chrome(chrome_options=chrome_options)
-# browser.maximize_window()
-
-
-#------------------------------------------------------------------------------------
 def googlefunc(user_input,name,ink):
-
-        # folder exist or not!
-        # if not os.path.exists(name):
-        #     print("Folder '"+name+"' created.")
-        #     os.mkdir(name)
-        #     os.mkdir(name+"/google")
-        #     gname = "google"
-        # else:
-        #     ink = str(random.randrange(1,100))
-        #     print("Folder '"+name+"' exist..")
-        #     o = input("\n[*] Want to use the same folder? (y | n):")
-        #     if o == 'n':
-        #         os.mkdir(name+"("+ink+")")
-        #         name  = name+"("+ink+")"
-        #         print("\n[*] Folder '"+name+"' created.")
         if not os.path.exists(name+"/google"):
             print("\n[*] Folder 'google' created inside '"+name+"' folder")
             os.mkdir(name+"/google")
@@ -61,22 +25,12 @@ def googlefunc(user_input,name,ink):
             gname = "google("+ink+")"
             print("\n[*] Folder 'google' exists inside '"+name+"' so creating '"+gname+"' folder")
 
-        #
-        # url = "http://google.com"
         print("\n[#] Do you want to take the screenshots also?")
         c = input("1.yes  2.No : ")
-        # # print("\n[*] googling your term")
-        # browser.get(url)
-        # inputbr = browser.find_element_by_name('q')
-        # inputbr.send_keys(user_input)
-        # button1 = browser.find_element_by_name('btnK')
-        # button1.click()
-        # sleep(3)
-        # print(browser.current_url)
+     
         web_url = "https://www.google.com/search?&q="+user_input
 
-        # browser.close()
-        # print("\n[*] Done! , Please wait ,reteriving all urls")
+      
 
         request  = requests.get(web_url)
         data = request.text
@@ -89,10 +43,7 @@ def googlefunc(user_input,name,ink):
             x = link.find_next("a")         #find to get (Tag
             y = x.get('href').split('=')[1] #get to get the Attribute of the Tag
             Url = y.split("&")[0]
-            # Url = Url.split(':')[0]
-            # print(Url)
-            # print("heading:"+Heading+"\n" )
-            # print("Url:"+Url+"\n")
+            
             if Url.split(':')[0] == 'https' or 'http':
                 tab[Heading] = Url  #heading as key  and Url and value[CSV]
             else:
@@ -108,13 +59,10 @@ def googlefunc(user_input,name,ink):
 
 
         if c == '1':
-            # firefox_options = Options()
-            # firefox_options.add_argument('--headless')
-            # browser2 = webdriver.Firefox(firefox_options=firefox_options)
-            # print("[*] Time to take the screenshots.. :)")
+            
             print("\n[*] please relax! this may take a while! ¯\_(ツ)_/¯\n")
             df2 = pd.read_csv('./'+name+'/'+gname+'/'+name+'.csv')
-            # print("please wait! While the grabber is working this may take a while!")
+            
             for i in range(len(df)):
                 # print(df['urls'][i])
                 url2 = df2['urls'][i]
@@ -126,26 +74,11 @@ def googlefunc(user_input,name,ink):
                     print(str(i)+". link might be broken please check the it manually!")
                     continue
             print('\n[*] All Done! you can check images in the "'+name+'/'+gname+'" directory')
-            # browser2.close()
-            # test2.savescr(user_input)
+           
 
 def stackfunction(user_input,name,flag,ink):
 
-        # folder exist or not!
-        # if not os.path.exists(name):
-        #     print("Folder '"+name+"' created.")
-        #     os.mkdir(name)
-        #     os.mkdir(name+"/stackoverflow")
-        #     name = name+"/stackoverflow"
-        # else:
-        #     ink = str(random.randrange(1,20))
-        #     if flag != '1':
-        #         print("[*] Folder '"+name+"' exist..")
-        #         o = input("\nWant to use the same folder? (y | n):")
-        #         if o == 'n':
-        #             os.mkdir(name+"("+ink+")")
-        #             name  = name+"("+ink+")"
-        #             print("\n[*] Folder '"+name+"' created.")
+        
         if not os.path.exists(name+"/stackoverflow"):
             print("\n[*] Folder 'stackoverflow' created inside '"+name+"' folder")
             os.mkdir(name+"/stackoverflow")
@@ -159,21 +92,7 @@ def stackfunction(user_input,name,flag,ink):
         stackoverflow.stackflow(user_input,name)
 
 def quorafunc(user_input,name,flag,ink):
-        # folder exist or not!
-        # if not os.path.exists(name):
-        #     print("Folder '"+name+"' created.")
-        #     os.mkdir(name)
-        #     os.mkdir(name+"/quora")
-        #     name = name+"/quora"
-        # else:
-        #     ink = str(random.randrange(1,20))
-        #     if flag != '1':
-        #         print("[*] Folder '"+name+"' exist..")
-        #         o = input("\nWant to use the same folder? (y | n):")
-        #         if o == 'n':
-        #             os.mkdir(name+"("+ink+")")
-        #             name  = name+"("+ink+")"
-        #             print("\n[*] Folder '"+name+"' created.")
+        
         if not os.path.exists(name+"/quora"):
             print("\n[*] Folder 'quora' created inside '"+name+"' folder")
             os.mkdir(name+"/quora")
@@ -191,22 +110,7 @@ if(len(sys.argv) != 2):
     print("Usage: "+sys.argv[0]+" <Searchterm> ")
     exit()
 
-# user_input = sys.argv[1]
-# name = user_input.split(" ")[0]
-# if not os.path.exists(name):
-#     print("Folder '"+name+"' created.")
-#     os.mkdir(name)
-#     # os.mkdir(name+"/google")
-#     # gname = "google"
-# else:
-#     ink = str(random.randrange(1,100))
-#     print("Folder '"+name+"' exist..")
-#     o = input("\n[*] Want to use the same folder? (y | n):")
-#     if o == 'n':
-#         os.mkdir(name+"("+ink+")")
-#         name  = name+"("+ink+")"
-#         print("\n[*] Folder '"+name+"' created.")
-# c = sys.argv[2]
+
 pl = input("[+] On which Platform You want to search \n [1].Google\n [2].Stackoverflow \n [3].Quora \n [0]. All\n")
 flag = '0'
 
@@ -217,19 +121,16 @@ ink = str(random.randrange(1,100))
 if not os.path.exists(name):
     print("[^] Folder '"+name+"' created.")
     os.mkdir(name)
-    # os.mkdir(name+"/google")
-    # gname = "google"
+   
 else:
-    # ink = str(random.randrange(1,100))
+    
     print("[^] Folder '"+name+"' exist..")
     o = input("\n[*] Want to use the same folder? (y | n):")
     if o == 'n':
         os.mkdir(name+"("+ink+")")
         name  = name+"("+ink+")"
         print("\n[^] Folder '"+name+"' created.")
-#------------------------------------------------------------------------------------
-# user_input = input("What do you want to search: ")
-#------------------------------------------------------------------------------------
+
 
 
 
@@ -248,20 +149,7 @@ print("""
 
 """)
 print("\n")
-#------------------------------------------------------------------------------------
 
-# # folder exist or not!
-# if not os.path.exists(name):
-#     print("Folder '"+name+"' created.")
-#     os.mkdir(name)
-#     os.mkdir(name+"/stackoverflow")
-# else:
-#     ink = str(random.randrange(1,20))
-#     print("Folder '"+name+"' exist so creating '"+name+"("+ink+") ' Folder.....")
-#     os.mkdir(name+"("+ink+")")
-#     os.mkdir(name+"("+ink+")/stackoverflow")
-#     name  = name+"("+ink+")"
-#------------------------------------------------------------------------------------
 
 if pl == '1':
     googlefunc(user_input,name,ink)
