@@ -9,7 +9,7 @@ And many more.....
 
 # Installation guide...
 
-``` To install the requires modules : pip3 install -r requirements.txt```
+``` To install the required modules : pip3 install -r requirements.txt```
 
 # usage guide
 ``` Python3 cicada.py "what you want to search".```
