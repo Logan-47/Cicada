@@ -7,8 +7,9 @@ from PIL import Image
 from io import StringIO
 from io import BytesIO
 from selenium.webdriver.chrome.options import Options
-# from selenium.webdriver.firefox.options import Options
-
+from colorama import init
+from colorama import Fore
+init()
 
 headers = {
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'}
@@ -18,7 +19,10 @@ headers = {
 
 # firefox_options = Options()
 # firefox_options.add_argument('--headless')
+# firefox_options.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36')
 # browser2 = webdriver.Firefox(firefox_options=firefox_options)
+
+
 
 #------------------------------------------------------------------------------------
 
@@ -32,9 +36,11 @@ chrome_options.add_argument('--disable-notifications')
 chrome_options.add_argument('--disable-crash-reporter')
 chrome_options.add_argument('--ignore-certificate-errors')
 chrome_options.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36')
+chrome_options.add_argument("--window-size=1920,1080");
+chrome_options.add_experimental_option("excludeSwitches",["ignore-certificate-errors"])
+# chrome_chrome_driver_path = "C:\Python27\Scripts\chromedriver.exe" // for windows
 browser2 = webdriver.Chrome(chrome_options=chrome_options)
-
-
+browser2.maximize_window()
 #------------------------------------------------------------------------------------
 
 # WIl take Full page Screen shot.[thanks to stackoverflow (@Fabian Thommen):D]
@@ -73,18 +79,12 @@ def fullscreensave(user_input,i,j,url):
 
     slices = []
     offset = 0
-    # for quora
-    # try:
-    #     print("worked")
-    #     browser2.execute_script(quora)
-    # except:
-    #     pass
 
     while offset < scrollheight:
 
         browser2.execute_script("window.scrollTo(0, %s);" % offset)
         try:
-            # print("worked")
+
             browser2.execute_script(quora)
             browser2.execute_script(stackf)
 
@@ -106,5 +106,5 @@ def fullscreensave(user_input,i,j,url):
         name = name+'('+ink+')'
     else:
         screenshot.save('./'+user_input+'/http_'+name+'.png')
-    print('[%] screenshot http_'+name+'.png taken')
+    print(Fore.CYAN+'[%] screenshot http_'+name+'.png taken')
     return name
