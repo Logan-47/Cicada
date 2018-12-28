@@ -2,9 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 import core.webshoot as webshoot
 import random
-from fake_useragent import UserAgent
 import random
 import os
+from colorama import init
+from colorama import Fore
+init()
 
 # user_input = "pubg"
 def quoraf(user_input,mainName):
@@ -44,13 +46,9 @@ def quoraf(user_input,mainName):
       </div>
 
     """
-    ua = UserAgent()
-    a = ua.random
-    headers = {
-    'user-agent':a
-    }
+
     request = requests.get(r'https://www.google.com/search?q=site:%20"quora.com"%20text='+user_input)
-    print("[*]creating 'quora' report please wait....:)")
+    print(Fore.RESET+"[*] creating 'Quora' report please wait!")
     data = request.text
     soup = BeautifulSoup(data,'html.parser')
     for link in soup.find_all("h3"):
@@ -73,7 +71,7 @@ def quoraf(user_input,mainName):
             else:
                 pass
         except:
-            print("[#] Something Went Wrong")
+            print(Fore.RED+"[#] Something Went Wrong")
 
         i = i+1
     file.write("""
@@ -82,6 +80,4 @@ def quoraf(user_input,mainName):
     </html>
     """)
     file.close()
-    print("[*] Done! check "+filename)
-
-# quoraf(user_input)
+    print(Fore.RESET+"[*] Done! check "+filename)
