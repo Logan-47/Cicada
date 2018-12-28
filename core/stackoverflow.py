@@ -2,24 +2,26 @@ from bs4 import BeautifulSoup
 import requests
 import os
 import random
-import core.webshoot as webshoot 
+import core.webshoot as webshoot
+from colorama import init
+from colorama import Fore
+init()
 
 def stackfunc(url):
     request  = requests.get(url)
     data = request.text
     soup = BeautifulSoup(data,'html.parser')
-    # print(soup)
     answer = soup.find("div",attrs={"class":"accepted-answer"})
     try:
         answerdiv = answer.find_next("div", attrs={"class":"post-text"})
         return(answerdiv.text)
     except:
         return "Don't have an accepted-answer click on link ---> "
-    
 
+#------------------------------------------------------------------------------------
 
 def stackflow(user_input,mainName):
-
+#------------------------------------------------------------------------------------
 
     ink = str(random.randrange(1,20))
     if os.path.isfile("./"+mainName+"/stackreport.html"):
@@ -30,14 +32,13 @@ def stackflow(user_input,mainName):
         filename = mainName+'/stackreport.html'
         file  = open('./'+mainName+'/stackreport.html','a+')
         s = mainName
-
+#------------------------------------------------------------------------------------
 
     user_input = user_input
     stackurl = "https://stackoverflow.com/search?q="+user_input+"+is:question"
-    
-    print('\n[*] searching on stackoverflow.com..... :)')
+    print(Fore.BLUE+'[*] searching on stackoverflow.com!')
     name = webshoot.fullscreensave(s,1,1,stackurl)
-    print("\n[*] creating report...Please Wait :D")
+    print(Fore.RESET+"[*] creating 'Stackoverflow' report...Please Wait")
     file.write("""
     <!DOCTYPE html>
     <html lang="en">
@@ -107,22 +108,16 @@ def stackflow(user_input,mainName):
     request  = requests.get(stackurl)
     data = request.text
     soup = BeautifulSoup(data,'html.parser')
-    
-    
-    
     i = 0
+
     for link in soup.find_all("h3"):
         i = i + 1
-        if i > 3:    # to strip the initial Crap......:D
+        if i > 3:                                   # to strip the initial Crap......
             Heading = link.get_text()
-            
             sx = link.find_next("a")
-                    # get <a> tag
-            sy = sx.get('href').split('=')[0] # only link part
+            sy = sx.get('href').split('=')[0]       # only link part
             sfull = "http://stackoverflow.com/"+sy
-            
             answer = stackfunc(sfull)
-            
             whole = wrapper % (Heading, answer,sfull)
             file.write(whole)
 
@@ -140,7 +135,4 @@ def stackflow(user_input,mainName):
 
     """)
     file.close()
-    print("[*] Done ! check "+filename)
-
-        
-
+    print(Fore.RESET+"[*] Done ! check "+filename)
