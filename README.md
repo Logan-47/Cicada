@@ -5,7 +5,7 @@ A simple Scraper Which will scrap Educational platform like :
 1. Google
 2. quora
 3. stackoverflow
-
+(currently scraps only these three platforms)
 etc..
 
 # Installation guide...
