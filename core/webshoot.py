@@ -22,8 +22,6 @@ headers = {
 # firefox_options.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36')
 # browser2 = webdriver.Firefox(firefox_options=firefox_options)
 
-
-
 #------------------------------------------------------------------------------------
 
 chrome_options = Options()
@@ -43,7 +41,7 @@ browser2 = webdriver.Chrome(chrome_options=chrome_options)
 browser2.maximize_window()
 #------------------------------------------------------------------------------------
 
-# WIl take Full page Screen shot.[thanks to stackoverflow (@Fabian Thommen):D]
+# Wil take Full page Screen shot.[thanks to stackoverflow (@Fabian Thommen):D]
 def fullscreensave(user_input,i,j,url):
     browser2.get(url)
     name = url.split('/')[2]

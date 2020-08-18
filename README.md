@@ -1,25 +1,33 @@
 # Cicada
 
-A simple Scraper Which will scrap Educational platform like : 
+A Web Cawler built using Python, Selenium and  BeautifulSoup4 Which crawl and scrapes Data from ```StackOverflow```,```Quora``` and ```Google```.
+It Provides user with a CSV file which contains link of the sites through which the crawler has gone through, and also have a feature to take full page screenshots of the visites pages.
 
-1. Google
-2. quora
-3. stackoverflow
-
-(currently scraps only these three platforms)
+It Can also give outputs in a nicely format WebPage if user wants, so that user can easily navigate through results.
 
 # Installation guide...
 
-``` To install the required packages run : pip3 install -r requirements.txt```
+``` Install the required dependencies run : pip install -r requirements.txt ```
 
 For the Script to run you need Chrome driver, 
-download the latest chrome Driver from : http://chromedriver.chromium.org/downloads
+download the chrome Driver as per your Google Chrome Version from : http://chromedriver.chromium.org/downloads
    
-``` In windows ```
+``` In Windows OS ```
 > Put .exe file in ```Python3/Script/``` directory
 
-``` In unix/linux```
+``` In Unix/Linux based OS```
 > Put Chrome driver in ```/usr/bin/``` directory
 
-# usage guide
+# Usage guide
 ``` Python3 cicada.py "what you want to search".```
+
+# Demo:
+
+![alt text](https://github.com/Logan-47/Cicada/blob/master/img/exmp_1.png)
+
+File Created:
+
+![alt text](https://github.com/Logan-47/Cicada/blob/master/img/exmp_2.png)
+
+
+
